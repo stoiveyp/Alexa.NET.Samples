@@ -48,6 +48,7 @@ namespace SimpleGadgetQuiz
 
                         var response = ResponseBuilder.Ask($"Okay then, let's begin! {question}", null);
                         response.WhenFirstButtonDown(mapping, "buzzedIn", 10000);
+                        response.Response.ShouldEndSession = null;
                         return response;
                     }
 

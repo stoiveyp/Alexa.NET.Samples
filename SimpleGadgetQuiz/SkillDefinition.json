@@ -1,0 +1,69 @@
+﻿{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "simple gadget quiz",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "answer",
+                    "slots": [
+                      {
+                        "name": "currentAnswer",
+                        "type": "AMAZON.SearchQuery",
+                        "samples": [
+                          "{currentAnswer}"
+                        ]
+                      }
+                    ],
+                    "samples": [
+                        "my answer is {currentAnswer}",
+                        "the answer is {currentAnswer}"
+                    ]
+                }
+            ],
+            "types": []
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "answer",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "currentAnswer",
+                            "type": "AMAZON.SearchQuery",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.430391336347.819966933357"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Slot.430391336347.819966933357",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "okay then, so what's your answer?"
+                    }
+                ]
+            }
+        ]
+    }
+}
