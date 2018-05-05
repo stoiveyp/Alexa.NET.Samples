@@ -1,0 +1,15 @@
+
+{
+    "region" : "eu-west-1",
+    "profile" : "stevenpears@live",
+    "configuration" : "Release",
+    "framework"     : "netcoreapp2.0",
+    "function-name" : "SimpleGadgetQuiz",
+    "function-handler" : "SimpleGadgetQuiz::SimpleGadgetQuiz.Function::FunctionHandler",
+    "function-memory-size" : 256,
+    "function-role"        : "arn:aws:iam::802502866407:role/lambda_exec_TapTheCode",
+    "function-timeout"     : 10,
+    "function-runtime"     : "dotnetcore2.0",
+    "tracing-mode"         : "PassThrough",
+    "environment-variables" : ""
+}

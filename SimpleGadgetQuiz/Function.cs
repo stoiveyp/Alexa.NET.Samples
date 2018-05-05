@@ -55,18 +55,25 @@ namespace SimpleGadgetQuiz
                     {
                         var buzzedInPlayer = player == state.GetSession<string>("player1") ? "player one" : "player two";
                         state.SetSession("currentAnswer", "five");
-                        return ResponseBuilder.Ask($"Okay then {buzzedInPlayer}, what's your answer?", null);
+                        return ResponseBuilder.DialogElicitSlot(
+                            new PlainTextOutputSpeech
+                            {
+                                Text = $"Okay then {buzzedInPlayer}, what's your answer?"
+                            }, "currentAnswer", new Intent { Name = "answer" });
                     }
 
                     break;
                 case IntentRequest intent:
-                    if (intent.Intent.Name.ToLower() == "answer")
+                    switch (intent.Intent.Name)
                     {
-                        Speech responseSpeech = intent.Intent.Slots["answer"].Value == await state.Get<string>("answer") ? 
-                            new Speech(Human.CrowdCheerMedium,new PlainText("Well done, that's correct!")) :
-                            new Speech(Human.CrowdBoo01, new PlainText("Well done, that's correct!"));
+                        case BuiltInIntent.Cancel: case BuiltInIntent.Stop:
+                            return ResponseBuilder.Empty();
+                        case "answer":
+                            Speech responseSpeech = intent.Intent.Slots["currentAnswer"].Value == await state.Get<string>("currentAnswer") ?
+                                new Speech(Human.CrowdCheerMedium, new PlainText("Well done, that's correct!")) :
+                                new Speech(Human.CrowdBoo01, new PlainText("Sorry, that's not the right answer"));
 
-                        return ResponseBuilder.Tell(responseSpeech);
+                            return ResponseBuilder.Tell(responseSpeech);
                     }
 
                     break;
