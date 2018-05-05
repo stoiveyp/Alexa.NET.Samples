@@ -1,0 +1,84 @@
+﻿{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "simple gadget quiz",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "answer",
+          "slots": [
+            {
+              "name": "currentAnswer",
+              "type": "allPossibleAnswers",
+              "samples": [
+                "{currentAnswer}"
+              ]
+            }
+          ],
+          "samples": [
+            "{currentAnswer}"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "name": "allPossibleAnswers",
+          "values": [
+            {
+              "name": {
+                "value": "five"
+              }
+            },
+            {
+              "name": {
+                "value": "three"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "answer",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "currentAnswer",
+              "type": "allPossibleAnswers",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.430391336347.819966933357"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.430391336347.819966933357",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "okay then, so what's your answer?"
+          }
+        ]
+      }
+    ]
+  }
+}

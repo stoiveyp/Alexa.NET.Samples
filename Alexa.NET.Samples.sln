@@ -12,6 +12,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProgressiveResponse", "Prog
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ListManagement", "ListManagement\ListManagement.csproj", "{DF324EBD-8ABC-4B47-A87D-60A0EA9D2A29}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleGadgetQuiz", "SimpleGadgetQuiz\SimpleGadgetQuiz.csproj", "{CE8E1609-2A8D-4809-84DF-C3FF6DB20583}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{DF324EBD-8ABC-4B47-A87D-60A0EA9D2A29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF324EBD-8ABC-4B47-A87D-60A0EA9D2A29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF324EBD-8ABC-4B47-A87D-60A0EA9D2A29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE8E1609-2A8D-4809-84DF-C3FF6DB20583}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE8E1609-2A8D-4809-84DF-C3FF6DB20583}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE8E1609-2A8D-4809-84DF-C3FF6DB20583}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE8E1609-2A8D-4809-84DF-C3FF6DB20583}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
