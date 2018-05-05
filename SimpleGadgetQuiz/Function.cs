@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using Alexa.NET;
 using Alexa.NET.Gadgets.GameEngine;
@@ -46,7 +47,7 @@ namespace SimpleGadgetQuiz
                         state.SetSession("player2", mapping["second"]);
                         var question = "Question One. Which is the bigger number, 3 or 5?";
 
-                        var response = ResponseBuilder.Ask($"Okay then, let's begin! {question}", null);
+                        var response = ResponseBuilder.Ask($"Okay then, let's begin! {question}", null,state.Session);
                         response.WhenFirstButtonDown(mapping, "buzzedIn", 10000);
                         response.Response.ShouldEndSession = null;
                         return response;
@@ -56,11 +57,7 @@ namespace SimpleGadgetQuiz
                     {
                         var buzzedInPlayer = player == state.GetSession<string>("player1") ? "player one" : "player two";
                         state.SetSession("currentAnswer", "five");
-                        return ResponseBuilder.DialogElicitSlot(
-                            new PlainTextOutputSpeech
-                            {
-                                Text = $"Okay then {buzzedInPlayer}, what's your answer?"
-                            }, "currentAnswer", new Intent { Name = "answer" });
+                        return ResponseBuilder.Ask($"Okay then {buzzedInPlayer}, what's your answer?",null, state.Session);
                     }
 
                     break;
@@ -70,7 +67,7 @@ namespace SimpleGadgetQuiz
                         case BuiltInIntent.Cancel: case BuiltInIntent.Stop:
                             return ResponseBuilder.Empty();
                         case "answer":
-                            Speech responseSpeech = intent.Intent.Slots["currentAnswer"].Value == await state.Get<string>("currentAnswer") ?
+                            Speech responseSpeech = await CheckAnswer(intent,state) ?
                                 new Speech(Human.CrowdCheerMedium, new PlainText("Well done, that's correct!")) :
                                 new Speech(Human.CrowdBoo01, new PlainText("Sorry, that's not the right answer"));
 
@@ -81,6 +78,16 @@ namespace SimpleGadgetQuiz
             }
 
             return ResponseBuilder.Tell("Sorry - I'm not sure how to handle that");
+        }
+
+        private async Task<bool> CheckAnswer(IntentRequest intent, SkillState state)
+        {
+            var expected = await state.Get<string>("currentAnswer");
+            var slot = intent.Intent.Slots["currentAnswer"];
+            var resolution = slot.Resolution.Authorities.First();
+            return slot.Value == expected || 
+                (resolution.Status.Code == ResolutionStatusCode.SuccessfulMatch && 
+                 resolution.Values.First().Value.Name == expected);
         }
     }
 }
