@@ -8,9 +8,8 @@ using Alexa.NET.Response;
 
 namespace AlexaSamplePetMatch.RequestHandlers
 {
-    public class MythicalCreatureHandler : SynchronousRequestHandler
+    public class MythicalCreature : SynchronousRequestHandler
     {
-        private const string IntentName = "PetMatchIntent";
         private const string SlotName = "pet";
         private const string ResolutionValue = "mythical_creatures";
         private const string CreatureKey = "mythicalCreature";
@@ -24,7 +23,7 @@ namespace AlexaSamplePetMatch.RequestHandlers
         public override bool CanHandle(RequestInformation information)
         {
             var intentRequest = information.SkillRequest.Request as IntentRequest;
-            if (intentRequest == null || intentRequest.Intent.Name != IntentName)
+            if (intentRequest == null || intentRequest.Intent.Name != Consts.PetMatchIntent)
             {
                 return false;
             }

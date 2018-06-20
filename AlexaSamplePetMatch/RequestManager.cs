@@ -7,8 +7,10 @@ namespace AlexaSamplePetMatch
     {
         public RequestManager() : base(new IRequestHandler[]
         {
-            new LaunchRequestHandler(),
-            new MythicalCreatureHandler()
+            new LaunchRequest(),
+            new MythicalCreature(),
+            new InProgressPetMatch(),
+            new CompletedPetMatch()
         }){}
     }
 }

@@ -7,14 +7,14 @@ using Alexa.NET.Response;
 
 namespace AlexaSamplePetMatch.RequestHandlers
 {
-    public class LaunchRequestHandler:SynchronousRequestHandler
+    public class LaunchRequest:SynchronousRequestHandler
     {
         private const string response = "Welcome to pet match. I can help you find the best dog for you. What are two things you are looking for in a dog?";
         private const string reprompt = "What size and temperament are you looking for in a dog?";
 
         public override bool CanHandle(RequestInformation information)
         {
-            return information.SkillRequest.Request is LaunchRequest;
+            return information.SkillRequest.Request is Alexa.NET.Request.Type.LaunchRequest;
         }
 
         public override SkillResponse HandleSyncRequest(RequestInformation information)
