@@ -5,7 +5,7 @@ namespace AlexaSamplePetMatch
 {
     public class RequestManager:Request
     {
-        public RequestManager() : base(new[]
+        public RequestManager() : base(new IRequestHandler[]
         {
             new LaunchRequestHandler(),
             new MythicalCreatureHandler()

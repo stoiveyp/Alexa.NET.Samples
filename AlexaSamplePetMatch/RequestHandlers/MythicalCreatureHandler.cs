@@ -40,7 +40,7 @@ namespace AlexaSamplePetMatch.RequestHandlers
 
             if (isMythical)
             {
-                information.State.SetSession(CreatureKey, petSlot.Value);
+                information.State.SetRequest(CreatureKey, petSlot.Value);
                 return true;
             }
 
@@ -53,7 +53,7 @@ namespace AlexaSamplePetMatch.RequestHandlers
             var phraseNumber = rnd.Next(0, Responses.Length - 1);
             return ResponseBuilder.Tell(
                 string.Format(Responses[phraseNumber],
-                    information.State.GetSession<string>(CreatureKey
+                    information.State.GetRequest<string>(CreatureKey
                     )));
         }
     }
