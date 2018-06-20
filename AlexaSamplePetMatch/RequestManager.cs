@@ -11,7 +11,9 @@ namespace AlexaSamplePetMatch
             new LaunchRequest(),
             new MythicalCreature(),
             new InProgressPetMatch(),
-            new CompletedPetMatch()
+            new CompletedPetMatch(),
+            new Help(),
+            new Exit()
         },new IErrorHandler[]{new ErrorHandler()}){}
     }
 }
