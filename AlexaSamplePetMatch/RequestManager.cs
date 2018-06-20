@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Alexa.NET.RequestHandlers;
 using AlexaSamplePetMatch.RequestHandlers;
 
@@ -11,6 +12,6 @@ namespace AlexaSamplePetMatch
             new MythicalCreature(),
             new InProgressPetMatch(),
             new CompletedPetMatch()
-        }){}
+        },new IErrorHandler[]{new ErrorHandler()}){}
     }
 }

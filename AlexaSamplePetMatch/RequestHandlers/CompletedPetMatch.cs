@@ -19,7 +19,7 @@ namespace AlexaSamplePetMatch.RequestHandlers
             if (information.SkillRequest.Request is IntentRequest intent)
             {
                 return intent.Intent.Name == Consts.PetMatchIntent
-                       && intent.Intent.ConfirmationStatus == DialogState.Completed;
+                       && intent.DialogState == DialogState.Completed;
             }
 
             return false;
