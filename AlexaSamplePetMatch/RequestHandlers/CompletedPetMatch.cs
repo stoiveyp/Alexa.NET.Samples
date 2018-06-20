@@ -53,7 +53,7 @@ namespace AlexaSamplePetMatch.RequestHandlers
 
         private string ApiQuery(Dictionary<string, Slot> slots)
         {
-            return $"SSET={Resolved(slots["energy"])}-{Resolved(slots["size"])}-{Resolved(slots["temperament"])}";
+            return $"SSET=canine-{Resolved(slots["energy"])}-{Resolved(slots["size"])}-{Resolved(slots["temperament"])}";
         }
 
         private string Resolved(Slot slot)
