@@ -11,10 +11,10 @@ namespace AlexaSamplePetMatch
 {
     public class ErrorHandler:AlwaysTrueErrorHandler
     {
-        public override async Task<SkillResponse> Handle(RequestInformation information, Exception exception)
+        public override Task<SkillResponse> Handle(RequestInformation information, Exception exception)
         {
             Console.WriteLine(exception.ToString());
-            return ResponseBuilder.Tell("So sorry, but something appears to have gone wrong");
+            return Task.FromResult(ResponseBuilder.Tell("So sorry, but something appears to have gone wrong"));
         }
     }
 }
