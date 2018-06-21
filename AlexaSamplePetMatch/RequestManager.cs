@@ -10,6 +10,7 @@ namespace AlexaSamplePetMatch
         {
             new LaunchRequest(),
             new MythicalCreature(),
+            new ExplainSize(),
             new InProgressPetMatch(),
             new CompletedPetMatch(),
             new Help(),

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
@@ -7,7 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="Alexa.NET" Version="1.5.4" />
-    <PackageReference Include="Alexa.NET.RequestHandlers" Version="1.0.11" />
+    <PackageReference Include="Alexa.NET.RequestHandlers" Version="1.0.12" />
     <PackageReference Include="Amazon.Lambda.Core" Version="1.0.0" />
     <PackageReference Include="Amazon.Lambda.Serialization.Json" Version="1.1.0" />
   </ItemGroup>

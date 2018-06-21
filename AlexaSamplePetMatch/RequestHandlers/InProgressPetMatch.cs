@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http.Headers;
+using System.Runtime.Serialization.Formatters;
 using System.Text;
 using Alexa.NET;
 using Alexa.NET.Request;
@@ -7,6 +9,7 @@ using Alexa.NET.Request.Type;
 using Alexa.NET.RequestHandlers;
 using Alexa.NET.RequestHandlers.Handlers;
 using Alexa.NET.Response;
+using Alexa.NET.StateManagement;
 
 namespace AlexaSamplePetMatch.RequestHandlers
 {
@@ -14,10 +17,19 @@ namespace AlexaSamplePetMatch.RequestHandlers
     {
         public override bool CanHandle(RequestInformation information)
         {
-            if (information.SkillRequest.Request is IntentRequest intent)
+            if (information.SkillRequest.Request is IntentRequest intent && intent.Intent.Name == Consts.PetMatchIntent)
             {
-                return intent.Intent.Name == Consts.PetMatchIntent
-                       && intent.DialogState != DialogState.Completed;
+                if (intent.DialogState == DialogState.Completed)
+                {
+                    return false;
+                }
+
+                if (intent.DialogState == DialogState.Started)
+                {
+                    LoadIntent(intent.Intent,information.State);
+                }
+
+                return true;
             }
 
             return false;
@@ -39,11 +51,13 @@ namespace AlexaSamplePetMatch.RequestHandlers
                     {
                         case ResolutionStatusCode.SuccessfulMatch when authority.Values.Length > 1:
                             var response = PickOneResponse(authority);
+                            SaveIntent(intent, information.State);
                             return ResponseBuilder.DialogElicitSlot(
                                 new PlainTextOutputSpeech{Text=response}, 
                                 slot.Name,information.State.Session,intent);
                         case ResolutionStatusCode.NoMatch:
                             var prompt = $"What {slot.Name} are you looking for?";
+                            SaveIntent(intent, information.State);
                             return ResponseBuilder.DialogElicitSlot(
                                 new PlainTextOutputSpeech { Text = prompt },
                                 slot.Name, information.State.Session, intent);
@@ -51,7 +65,25 @@ namespace AlexaSamplePetMatch.RequestHandlers
                 }
             }
 
+            SaveIntent(intent, information.State);
             return ResponseBuilder.DialogDelegate(intent);
+        }
+
+        private void SaveIntent(Intent intent, ISkillState state)
+        {
+            if (intent?.Slots?.Any() ?? false)
+            {
+                state.SetSession("temp_petmatch",intent.Slots);
+            }
+        }
+
+        private void LoadIntent(Intent intent, ISkillState state)
+        {
+            var slots = state.GetSession<Dictionary<string, Slot>>("temp_petmatch");
+            if (slots != default(Dictionary<string, Slot>))
+            {
+                intent.Slots = slots;
+            }
         }
 
         private string PickOneResponse(ResolutionAuthority authority)
