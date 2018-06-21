@@ -26,7 +26,7 @@ namespace AlexaSamplePetMatch.RequestHandlers
             var unit = intent.Intent.Slots["unitOfMeasurement"].Value;
             var description = unit == "pounds" ? dogSize.Pounds : dogSize.Kilograms;
 
-            return ResponseBuilder.Ask($"a {size} dog is {description} {unit}. What size dog would you like?",null);
+            return ResponseBuilder.Ask($"a {size} dog is {description} {unit}. What size dog would you like?",null, information.State.Session);
         }
     }
 }
