@@ -13,9 +13,15 @@ namespace AlexaSamplePetMatch.RequestHandlers
     {
         public override bool CanHandle(RequestInformation information)
         {
+            if (information.SkillRequest.Request is SessionEndedRequest)
+            {
+                return true;
+            }
+
             if (information.SkillRequest.Request is IntentRequest intent)
             {
-                return intent.Intent.Name == BuiltInIntent.Stop || intent.Intent.Name == BuiltInIntent.Cancel;
+                return intent.Intent.Name == BuiltInIntent.Stop ||
+                       intent.Intent.Name == BuiltInIntent.Cancel;
             }
 
             return false;
