@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http.Headers;
-using System.Runtime.Serialization.Formatters;
 using System.Text;
 using Alexa.NET;
 using Alexa.NET.Request;
@@ -15,6 +13,8 @@ namespace AlexaSamplePetMatch.RequestHandlers
 {
     public class InProgressPetMatch : SynchronousRequestHandler
     {
+        private readonly string[] RequiredSlots = {"energy","size","temperament"};
+
         public override bool CanHandle(RequestInformation information)
         {
             if (information.SkillRequest.Request is IntentRequest intent && intent.Intent.Name == Consts.PetMatchIntent)
@@ -55,7 +55,7 @@ namespace AlexaSamplePetMatch.RequestHandlers
                             return ResponseBuilder.DialogElicitSlot(
                                 new PlainTextOutputSpeech{Text=response}, 
                                 slot.Name,information.State.Session,intent);
-                        case ResolutionStatusCode.NoMatch:
+                        case ResolutionStatusCode.NoMatch when RequiredSlots.Contains(slot.Name):
                             var prompt = $"What {slot.Name} are you looking for?";
                             SaveIntent(intent, information.State);
                             return ResponseBuilder.DialogElicitSlot(
