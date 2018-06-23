@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Alexa.NET;
@@ -73,6 +74,7 @@ namespace AlexaSamplePetMatch.RequestHandlers
         {
             if (intent?.Slots?.Any() ?? false)
             {
+                Console.WriteLine("Saving intent: " + string.Join(",",intent.Slots.Values.Where(s => !string.IsNullOrWhiteSpace(s.Value)).Select(s =>s.Name)));
                 state.SetSession("temp_petmatch",intent.Slots);
             }
         }
@@ -87,9 +89,19 @@ namespace AlexaSamplePetMatch.RequestHandlers
                     intent.Slots = new Dictionary<string, Slot>();
                 }
 
-                foreach (var slotName in slots.Keys.Except(intent.Slots.Keys))
+                foreach (var slot in slots.Where(s => s.Value.Value != null).Select(kvp => kvp.Value))
                 {
-                    intent.Slots.Add(slotName,slots[slotName]);
+                    if (intent.Slots.ContainsKey(slot.Name))
+                    {
+                        if (intent.Slots[slot.Name].Value != null)
+                        {
+                            continue;
+                        }
+
+                        intent.Slots.Remove(slot.Name);
+                    }
+                    Console.WriteLine("loading slot " + slot.Name);
+                    intent.Slots.Add(slot.Name,slot);
                 }
 
                 intent.Slots = slots;
