@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Alexa.NET;
 using Alexa.NET.Request.Type;
 using Alexa.NET.RequestHandlers;
 using Alexa.NET.RequestHandlers.Handlers;
@@ -22,7 +23,7 @@ namespace AlexaSamplePetMatch.RequestHandlers
 
         public override SkillResponse HandleSyncRequest(RequestInformation information)
         {
-            throw new NotImplementedException();
+            return ResponseBuilder.Tell("Bye");
         }
     }
 }
