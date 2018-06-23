@@ -82,6 +82,16 @@ namespace AlexaSamplePetMatch.RequestHandlers
             var slots = state.GetSession<Dictionary<string, Slot>>("temp_petmatch");
             if (slots != default(Dictionary<string, Slot>))
             {
+                if (intent.Slots == null)
+                {
+                    intent.Slots = new Dictionary<string, Slot>();
+                }
+
+                foreach (var slotName in slots.Keys.Except(intent.Slots.Keys))
+                {
+                    intent.Slots.Add(slotName,slots[slotName]);
+                }
+
                 intent.Slots = slots;
             }
         }
