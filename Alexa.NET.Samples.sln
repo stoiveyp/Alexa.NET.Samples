@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27205.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29102.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2641FB2B-243E-41EA-B80B-9F042A11E328}"
 	ProjectSection(SolutionItems) = preProject
@@ -16,7 +16,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleGadgetQuiz", "SimpleG
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlexaSamplePetMatch", "AlexaSamplePetMatch\AlexaSamplePetMatch.csproj", "{D3923A15-2155-4822-B3CA-9F55FB425761}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureFunction", "AzureFunction\AzureFunction.csproj", "{8FE88B7A-7212-4069-9EB6-9C733B5B7786}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureFunction", "AzureFunction\AzureFunction.csproj", "{8FE88B7A-7212-4069-9EB6-9C733B5B7786}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APLTransition", "APLTransition\APLTransition.csproj", "{78151EC1-DC0F-46BA-9E88-2C85214EBFCC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +46,10 @@ Global
 		{8FE88B7A-7212-4069-9EB6-9C733B5B7786}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FE88B7A-7212-4069-9EB6-9C733B5B7786}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FE88B7A-7212-4069-9EB6-9C733B5B7786}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78151EC1-DC0F-46BA-9E88-2C85214EBFCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78151EC1-DC0F-46BA-9E88-2C85214EBFCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78151EC1-DC0F-46BA-9E88-2C85214EBFCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78151EC1-DC0F-46BA-9E88-2C85214EBFCC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
